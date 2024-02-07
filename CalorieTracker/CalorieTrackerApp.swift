@@ -9,9 +9,16 @@ import SwiftUI
 
 @main
 struct CalorieTrackerApp: App {
+    @State private var isActive = false
+
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            if isActive {
+                DailyIntakeView()
+            } else {
+                LoadingView(isActive: $isActive)
+            }
         }
     }
 }
+
