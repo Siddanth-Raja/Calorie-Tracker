@@ -9,46 +9,43 @@ import SwiftUI
 
 struct DailyIntakeView: View {
     @State private var showingAddFoodItemView = false
-    @State var sampleFoods = [
-        // Your sample food items
-        FoodItem(name: "Apple", calories: 95, carbs: 25, protein: 0.5, fat: 0.3),
-        FoodItem(name: "Grilled Chicken Breast", calories: 165, carbs: 0, protein: 31, fat: 3.6)
-    ]
+    @State var sampleFoods: [FoodItem] = [] // Initialize as empty array
     
-    // Recommended daily calorie intake
+    // Recommended daily calorie and protein intake
     let recommendedCalories: Float = 2000.0
-    // Total calorie intake
-    var totalCalories: Float {
-        sampleFoods.reduce(0) { $0 + Float($1.calories)}}
-
-    // Recommended daily protein intake
     let recommendedProtein: Float = 60.0
-    // Total protein intake
+
+    // Total calorie and protein intake
+    var totalCalories: Float {
+        sampleFoods.reduce(0) { $0 + Float($1.calories) }
+    }
     var totalProtein: Float {
-        sampleFoods.reduce(0) { $0 + Float($1.protein)}}
+        sampleFoods.reduce(0) { $0 + Float($1.protein) }
+    }
 
     var body: some View {
         NavigationView {
             List {
                 HStack {
-                    // Calorie intake circle chart
                     CircularProgressCalorieView(progress: totalCalories, total: recommendedCalories)
-                        .frame(width: 150, height: 150) // Adjust the size as needed
-                        .padding(.horizontal)
-                        .padding(.vertical)
-                        
+                        .frame(width: 150, height: 150)
+                        .padding()
                     
-                    // Protein intake circle chart
                     CircularProgressProteinView(progress: totalProtein, total: recommendedProtein)
-                        .frame(width: 150, height: 150) // Adjust the size as needed
-                        .padding(.horizontal)
-                        .padding(.vertical)
+                        .frame(width: 150, height: 150)
+                        .padding()
                 }
 
-                // List of foods
-                ForEach(sampleFoods) { food in
-                    NavigationLink(destination: FoodItemDetailView(foodItem: food)) {
-                        Text(food.name)
+                // Check if sampleFoods is empty and display a message or the list of foods
+                if sampleFoods.isEmpty {
+                    Text("No foods added yet. Tap '+' to add.")
+                        .foregroundColor(.gray)
+                        .padding()
+                } else {
+                    ForEach(sampleFoods) { food in
+                        NavigationLink(destination: FoodItemDetailView(foodItem: food)) {
+                            Text(food.name)
+                        }
                     }
                 }
             }
@@ -64,7 +61,6 @@ struct DailyIntakeView: View {
         }
     }
 }
-
 
 struct DailyIntakeView_Previews: PreviewProvider {
     static var previews: some View {

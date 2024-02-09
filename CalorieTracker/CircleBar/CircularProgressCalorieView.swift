@@ -41,8 +41,8 @@ struct CircularProgressCalorieView: View {
             
             // Label Text "Calories"
             Text("Calories")
-                .font(.headline) // Adjust the font style as needed
-                .padding(.top, 5) // Optional: Adjust the spacing between the chart and the label
+                .font(.headline) // font style
+                .padding(.top, 5) // spacing (optional)
         }
     }
 }

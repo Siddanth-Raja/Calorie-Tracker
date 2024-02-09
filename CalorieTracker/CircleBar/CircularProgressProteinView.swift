@@ -41,8 +41,8 @@ struct CircularProgressProteinView: View {
 
             // Label Text "Protein"
             Text("Protein")
-                .font(.headline)
-                .padding(.top, 5) // Adjust the spacing if necessary
+                .font(.headline) // font style
+                .padding(.top, 5) // spacing
         }
     }
 }
