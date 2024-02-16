@@ -43,6 +43,12 @@ struct LoadingView: View {
             .cornerRadius(10)
             .padding(.horizontal)
             .padding(.bottom, 20) // Adds padding at the bottom
+            
+            // Embedding the image within the view
+            Image("Updated_NutritionixAPI_hires_flat")
+                .resizable() // Makes the image resizable
+                .scaledToFit() // Ensures the image fits within the available space
+                .padding() // Adds padding around the image
 
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)

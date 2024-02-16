@@ -39,7 +39,7 @@ struct CircularProgressCalorieView: View {
             }
             .frame(width: 150, height: 150) // Set the frame for the circular progress
             
-            // Label Text "Calories"
+            // Label
             Text("Calories")
                 .font(.headline) // font style
                 .padding(.top, 5) // spacing (optional)

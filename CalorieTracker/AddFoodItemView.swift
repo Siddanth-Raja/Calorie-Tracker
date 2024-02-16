@@ -17,32 +17,22 @@ struct AddFoodItemView: View {
     @State private var protein: String = ""
     @State private var fat: String = ""
     @State private var searchText = ""
+    @State private var searchResults: [NutritionixService.Food] = []
 
-    var filteredPresetFoods: [PresetFoodItem] {
-        if searchText.isEmpty {
-            return presetFoods
-        } else {
-            return presetFoods.filter { $0.name.localizedCaseInsensitiveContains(searchText) }
-        }
-    }
+    private var nutritionixService = NutritionixService()
 
     var body: some View {
         NavigationView {
             Form {
                 Section(header: Text("Search Foods")) {
-                    TextField("Search", text: $searchText)
+                    TextField("Search", text: $searchText, onCommit: fetchNutritionData)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                 }
 
-                Section(header: Text("Foods")) {
-                    ForEach(filteredPresetFoods, id: \.name) { food in
-                        Button(food.name) {
-                            // Fill in the form with the selected preset
-                            self.name = food.name
-                            self.calories = "\(food.calories)"
-                            self.carbs = "\(food.carbs)"
-                            self.protein = "\(food.protein)"
-                            self.fat = "\(food.fat)"
+                Section(header: Text("Results")) {
+                    ForEach(searchResults, id: \.self) { food in
+                        Button(food.food_name) {
+                            fillForm(with: food)
                         }
                     }
                 }
@@ -74,6 +64,27 @@ struct AddFoodItemView: View {
         }
     }
 
+    func fetchNutritionData() {
+        nutritionixService.fetchNutrition(forFood: searchText) { result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let foods):
+                    self.searchResults = foods
+                case .failure(let error):
+                    print(error.localizedDescription) // Handle errors appropriately in your app
+                }
+            }
+        }
+    }
+
+    func fillForm(with food: NutritionixService.Food) {
+        self.name = food.food_name
+        self.calories = String(food.nf_calories)
+        self.carbs = String(food.nf_total_carbohydrate)
+        self.protein = String(food.nf_protein)
+        self.fat = String(food.nf_total_fat)
+    }
+
     func addFoodItem() {
         guard let caloriesInt = Int(calories),
               let carbsDouble = Double(carbs),
@@ -87,25 +98,4 @@ struct AddFoodItemView: View {
         sampleFoods.append(newFoodItem)
         isPresented = false
     }
-
-    struct PresetFoodItem: Identifiable {
-        let id = UUID()
-        var name: String
-        var calories: Int
-        var carbs: Double
-        var protein: Double
-        var fat: Double
-    }
-
-    // Example preset foods
-    let presetFoods = [
-        PresetFoodItem(name: "Banana", calories: 89, carbs: 22.8, protein: 1.1, fat: 0.3),
-        PresetFoodItem(name: "Brown Rice (1 cup, cooked)", calories: 216, carbs: 44.8, protein: 5.0, fat: 1.8),
-        PresetFoodItem(name: "Almonds (1 oz)", calories: 164, carbs: 6.1, protein: 6.0, fat: 14.2),
-        PresetFoodItem(name: "Apple", calories: 95, carbs: 25, protein: 0.5, fat: 0.3),
-        PresetFoodItem(name: "Grilled Chicken Breast", calories: 165, carbs: 0, protein: 31, fat: 3.6),
-
-        // Add more presets as needed
-    ]
 }
-

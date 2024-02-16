@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4DEACEB62B7D5E99008E46EC /* NutritionixModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEACEB52B7D5E99008E46EC /* NutritionixModel.swift */; };
+		4DEACEB92B7D5F01008E46EC /* NutritionixService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEACEB82B7D5F01008E46EC /* NutritionixService.swift */; };
 		4DFAABE82B71792D008A00E2 /* CalorieTrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFAABE72B71792D008A00E2 /* CalorieTrackerApp.swift */; };
 		4DFAABEC2B71792E008A00E2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4DFAABEB2B71792E008A00E2 /* Assets.xcassets */; };
 		4DFAABEF2B71792E008A00E2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4DFAABEE2B71792E008A00E2 /* Preview Assets.xcassets */; };
@@ -21,6 +23,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4DEACEB52B7D5E99008E46EC /* NutritionixModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutritionixModel.swift; sourceTree = "<group>"; };
+		4DEACEB82B7D5F01008E46EC /* NutritionixService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutritionixService.swift; sourceTree = "<group>"; };
 		4DFAABE42B71792D008A00E2 /* CalorieTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CalorieTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DFAABE72B71792D008A00E2 /* CalorieTrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalorieTrackerApp.swift; sourceTree = "<group>"; };
 		4DFAABEB2B71792E008A00E2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -46,9 +50,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4DEACEB72B7D5EDC008E46EC /* Nutritionix API */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Nutritionix API";
+			sourceTree = "<group>";
+		};
 		4DFAABDB2B71792D008A00E2 = {
 			isa = PBXGroup;
 			children = (
+				4DEACEB72B7D5EDC008E46EC /* Nutritionix API */,
 				4DFAABE62B71792D008A00E2 /* CalorieTracker */,
 				4DFAABE52B71792D008A00E2 /* Products */,
 			);
@@ -65,6 +77,8 @@
 		4DFAABE62B71792D008A00E2 /* CalorieTracker */ = {
 			isa = PBXGroup;
 			children = (
+				4DEACEB52B7D5E99008E46EC /* NutritionixModel.swift */,
+				4DEACEB82B7D5F01008E46EC /* NutritionixService.swift */,
 				4DFAABE72B71792D008A00E2 /* CalorieTrackerApp.swift */,
 				4DFAABFB2B717DE5008A00E2 /* LoadingView.swift */,
 				4DFAABF52B7179A7008A00E2 /* DailyIntakeView.swift */,
@@ -170,11 +184,13 @@
 				4DFAABF82B7179C5008A00E2 /* FoodItem.swift in Sources */,
 				4DFAAC382B72C4D4008A00E2 /* CircularProgressCalorieView.swift in Sources */,
 				4DFAAC002B719076008A00E2 /* AddFoodItemView.swift in Sources */,
+				4DEACEB92B7D5F01008E46EC /* NutritionixService.swift in Sources */,
 				4DFAABF62B7179A7008A00E2 /* DailyIntakeView.swift in Sources */,
 				4DFAABFC2B717DE5008A00E2 /* LoadingView.swift in Sources */,
 				4DFAABFE2B71800B008A00E2 /* ProgressBar.swift in Sources */,
 				4DFAAC3B2B72D0AD008A00E2 /* CircularProgressProteinView.swift in Sources */,
 				4DFAABE82B71792D008A00E2 /* CalorieTrackerApp.swift in Sources */,
+				4DEACEB62B7D5E99008E46EC /* NutritionixModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
